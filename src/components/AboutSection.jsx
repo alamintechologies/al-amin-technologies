@@ -3,10 +3,10 @@ import { motion, useInView } from 'framer-motion'
 import { Target, Zap, Shield } from 'lucide-react'
 
 const stats = [
-  { icon: Target, value: "50+", label: "Projects Delivered" },
-  { icon: Zap, value: "99%", label: "Client Satisfaction" },
-  { icon: Shield, value: "24/7", label: "Support Available" },
-]
+  { icon: Target, value: "0+", label: "Projects Delivered" },
+  { icon: Zap, value: "0%", label: "Client Satisfaction" },
+  { icon: Shield, value: "24/7", label: "Support Available" }
+];
 
 const AboutSection = () => {
   const ref = useRef(null)
