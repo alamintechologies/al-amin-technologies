@@ -3,8 +3,8 @@ import { motion, useInView } from 'framer-motion'
 import { Target, Zap, Shield } from 'lucide-react'
 
 const stats = [
-  { icon: Target, value: "0+", label: "Projects Delivered" },
-  { icon: Zap, value: "0%", label: "Client Satisfaction" },
+  { icon: Target, value: "2+", label: "Projects Delivered" },
+  { icon: Zap, value: "100%", label: "Client Satisfaction" },
   { icon: Shield, value: "24/7", label: "Support Available" }
 ];
 
