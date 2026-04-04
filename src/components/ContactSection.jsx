@@ -8,13 +8,26 @@ const ContactSection = () => {
   const [submitted, setSubmitted] = useState(false)
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' })
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSubmitted(true)
-    setFormData({ name: '', email: '', subject: '', message: '' })
-    setTimeout(() => setSubmitted(false), 3000)
-  }
+  const [error, setError] = useState(false)
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    setError(false)
+    try {
+      const res = await fetch('https://formspree.io/f/xlgopqld', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      if (!res.ok) throw new Error()
+      setSubmitted(true)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      setTimeout(() => setSubmitted(false), 3000)
+    } catch {
+      setError(true)
+      setTimeout(() => setError(false), 3000)
+    }
+  }
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
@@ -150,7 +163,7 @@ const ContactSection = () => {
               type="submit"
               className="w-full flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-primary text-primary-foreground font-semibold glow-primary hover:scale-[1.02] transition-transform duration-300"
             >
-              {submitted ? "Message Sent! ✓" : (
+             {submitted ? "Message Sent! ✓" : error ? "Failed, try again ✗" : (
                 <>Send Message <Send size={16} /></>
               )}
             </button>
